@@ -7,6 +7,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Rust](https://img.shields.io/badge/rust-1.70%2B-orange.svg)](https://www.rust-lang.org/)
 [![Tauri](https://img.shields.io/badge/tauri-2.x-blue.svg)](https://tauri.app/)
+[![GitHub release](https://img.shields.io/github/v/release/Jack12138-jkp/lock-keyboard)](https://github.com/Jack12138-jkp/lock-keyboard/releases)
+[![GitHub downloads](https://img.shields.io/github/downloads/Jack12138-jkp/lock-keyboard/total)](https://github.com/Jack12138-jkp/lock-keyboard/releases)
 
 中文文档 | [English](README.en.md)
 
@@ -46,10 +48,17 @@
 
 #### 方式 1：下载预编译版本（推荐）
 
-从 [Releases](https://github.com/你的用户名/lock-keyboard/releases) 页面下载适合您平台的最新版本：
-- **macOS**：`.dmg` 文件
-- **Windows**：`.msi` 或 `.exe` 安装程序
-- **Linux**：`.deb`、`.rpm` 或 `.AppImage` 文件
+**[📥 点击这里下载最新版本](https://github.com/Jack12138-jkp/lock-keyboard/releases/latest)**
+
+从 [Releases](https://github.com/Jack12138-jkp/lock-keyboard/releases) 页面下载适合您平台的最新版本：
+
+| 平台 | 文件类型 | 说明 |
+|------|---------|------|
+| **macOS** | `.dmg` | 支持 Intel 和 Apple Silicon (M1/M2/M3) |
+| **Windows** | `.msi` 或 `.exe` | Windows 10 及以上版本 |
+| **Linux** | `.deb` | Debian/Ubuntu 系统 |
+| **Linux** | `.rpm` | Fedora/RHEL/CentOS 系统 |
+| **Linux** | `.AppImage` | 通用格式，所有发行版 |
 
 #### 方式 2：从源码构建
 

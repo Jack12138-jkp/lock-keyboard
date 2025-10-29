@@ -7,6 +7,8 @@ A lightweight keyboard lock tool for macOS, Windows, and Linux built with Tauri 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Rust](https://img.shields.io/badge/rust-1.70%2B-orange.svg)](https://www.rust-lang.org/)
 [![Tauri](https://img.shields.io/badge/tauri-2.x-blue.svg)](https://tauri.app/)
+[![GitHub release](https://img.shields.io/github/v/release/Jack12138-jkp/lock-keyboard)](https://github.com/Jack12138-jkp/lock-keyboard/releases)
+[![GitHub downloads](https://img.shields.io/github/downloads/Jack12138-jkp/lock-keyboard/total)](https://github.com/Jack12138-jkp/lock-keyboard/releases)
 
 [中文文档](README.md) | English
 
@@ -46,10 +48,17 @@ A lightweight keyboard lock tool for macOS, Windows, and Linux built with Tauri 
 
 #### Method 1: Download Pre-built Binary (Recommended)
 
-Download the latest version for your platform from [Releases](https://github.com/yourusername/lock-keyboard/releases):
-- **macOS**: `.dmg` file
-- **Windows**: `.msi` or `.exe` installer
-- **Linux**: `.deb`, `.rpm`, or `.AppImage`
+**[📥 Click here to download the latest version](https://github.com/Jack12138-jkp/lock-keyboard/releases/latest)**
+
+Download the latest version for your platform from [Releases](https://github.com/Jack12138-jkp/lock-keyboard/releases):
+
+| Platform | File Type | Description |
+|----------|-----------|-------------|
+| **macOS** | `.dmg` | Supports Intel & Apple Silicon (M1/M2/M3) |
+| **Windows** | `.msi` or `.exe` | Windows 10 and above |
+| **Linux** | `.deb` | Debian/Ubuntu systems |
+| **Linux** | `.rpm` | Fedora/RHEL/CentOS systems |
+| **Linux** | `.AppImage` | Universal format for all distributions |
 
 #### Method 2: Build from Source
 
