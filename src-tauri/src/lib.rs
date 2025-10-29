@@ -45,16 +45,10 @@ fn check_and_request_accessibility_permission() -> bool {
 /// Windows: Check if running with administrator privileges
 #[cfg(target_os = "windows")]
 fn check_and_request_accessibility_permission() -> bool {
-    use std::ptr;
-    use winapi::um::shellapi::IsUserAnAdmin;
-    
-    unsafe {
-        if IsUserAnAdmin() == 0 {
-            eprintln!("Warning: Not running as administrator. Keyboard locking may not work properly.");
-            eprintln!("Please right-click the application and select 'Run as administrator'.");
-            return false;
-        }
-    }
+    // Note: On Windows, keyboard grabbing with rdev may require administrator privileges
+    // We'll print a warning but allow the app to run
+    eprintln!("Note: If keyboard locking doesn't work, try running as administrator.");
+    eprintln!("Right-click the application and select 'Run as administrator'.");
     true
 }
 
