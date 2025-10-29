@@ -19,6 +19,7 @@ const MENU_LOCK_ID: &str = "lock-keyboard";
 const MENU_UNLOCK_ID: &str = "unlock-keyboard";
 const MENU_QUIT_ID: &str = "quit-app";
 
+/// Check and request accessibility permission on macOS
 #[cfg(target_os = "macos")]
 fn check_and_request_accessibility_permission() -> bool {
     let check_script = r#"
@@ -33,7 +34,7 @@ fn check_and_request_accessibility_permission() -> bool {
         }
     }
     
-    // 打开系统偏好设置
+    // Open System Preferences
     let _ = Command::new("open")
         .arg("x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility")
         .spawn();
@@ -41,7 +42,43 @@ fn check_and_request_accessibility_permission() -> bool {
     false
 }
 
-#[cfg(not(target_os = "macos"))]
+/// Windows: Check if running with administrator privileges
+#[cfg(target_os = "windows")]
+fn check_and_request_accessibility_permission() -> bool {
+    use std::ptr;
+    use winapi::um::shellapi::IsUserAnAdmin;
+    
+    unsafe {
+        if IsUserAnAdmin() == 0 {
+            eprintln!("Warning: Not running as administrator. Keyboard locking may not work properly.");
+            eprintln!("Please right-click the application and select 'Run as administrator'.");
+            return false;
+        }
+    }
+    true
+}
+
+/// Linux: Check if user has access to input devices
+#[cfg(target_os = "linux")]
+fn check_and_request_accessibility_permission() -> bool {
+    use std::process::Command;
+    
+    // Check if user is in the input group
+    if let Ok(output) = Command::new("groups").output() {
+        let groups = String::from_utf8_lossy(&output.stdout);
+        if !groups.contains("input") {
+            eprintln!("Warning: User is not in the 'input' group.");
+            eprintln!("To enable keyboard locking, run:");
+            eprintln!("  sudo usermod -a -G input $USER");
+            eprintln!("Then log out and log back in.");
+            return false;
+        }
+    }
+    true
+}
+
+/// Other platforms: No special permissions needed
+#[cfg(not(any(target_os = "macos", target_os = "windows", target_os = "linux")))]
 fn check_and_request_accessibility_permission() -> bool {
     true
 }
@@ -126,6 +163,8 @@ pub fn run() {
     
     tauri::Builder::default()
         .setup(|app| {
+            // On macOS, hide from Dock
+            #[cfg(target_os = "macos")]
             app.set_activation_policy(tauri::ActivationPolicy::Accessory);
             
             let keyboard_state = KeyboardState::new();
